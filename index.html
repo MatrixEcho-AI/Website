@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+
+  <title>MatrixEcho | 深圳回响矩阵人工智能有限公司</title>
+  <meta name="description" content="MatrixEcho（深圳回响矩阵人工智能有限公司）专注模型设计与大模型理论创新。" />
+
+  <!-- 你将会在后续替换该文件：favicon.ico -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root {
+      --bg: #f5fbff;
+      --panel: rgba(255, 255, 255, 0.78);
+      --panel-2: rgba(255, 255, 255, 0.92);
+      --text: rgba(15, 23, 42, 0.92);
+      --muted: rgba(51, 65, 85, 0.92);
+      --subtle: rgba(71, 85, 105, 0.92);
+      --border: rgba(15, 23, 42, 0.10);
+      --accent: #0284c7;
+      --accent-2: #38bdf8;
+      --max: 1120px;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(900px 520px at 12% 0%, rgba(56, 189, 248, 0.30), transparent 60%),
+        radial-gradient(900px 560px at 92% 10%, rgba(2, 132, 199, 0.18), transparent 62%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 55%, #eef7ff 100%);
+      color: var(--text);
+    }
+
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 轻量网格质感（纯 CSS，不引入图片） */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        repeating-linear-gradient(0deg, rgba(2, 132, 199, 0.06) 0 1px, transparent 1px 52px),
+        repeating-linear-gradient(90deg, rgba(2, 132, 199, 0.05) 0 1px, transparent 1px 52px),
+        radial-gradient(900px 280px at 50% 12%, rgba(56, 189, 248, 0.10), transparent 62%);
+      opacity: 0.9;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.72);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.95) 0%, rgba(2, 132, 199, 0.95) 100%);
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08) inset;
+      flex: 0 0 auto;
+    }
+
+    .brand-text {
+      display: grid;
+      line-height: 1.15;
+      min-width: 0;
+    }
+
+    .brand-text strong {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-text span {
+      font-size: 12px;
+      color: var(--subtle);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .lang-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.62);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 120ms ease, border-color 120ms ease;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.78);
+      border-color: rgba(2, 132, 199, 0.22);
+    }
+
+    main { padding: 56px 0 40px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .hero-card {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(2, 132, 199, 0.08);
+      border: 1px solid rgba(2, 132, 199, 0.18);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .pill-row {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      border: 1px solid rgba(2, 132, 199, 0.18);
+      background: rgba(2, 132, 199, 0.06);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .side {
+      display: grid;
+      gap: 14px;
+    }
+
+    .side-card {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .side-card h2 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--text);
+      letter-spacing: 0.2px;
+    }
+
+    .side-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.70) 100%);
+      border-radius: var(--radius);
+      padding: 18px;
+      min-height: 140px;
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing: 0.2px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 26px 0 32px;
+      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.68);
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--subtle);
+      font-size: 12.5px;
+    }
+
+    .icp a {
+      color: var(--subtle);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 34px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav" role="navigation" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="MatrixEcho">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">
+            <strong>MatrixEcho</strong>
+            <span data-i18n="company_legal">深圳回响矩阵人工智能有限公司</span>
+          </span>
+        </a>
+
+        <div class="nav-actions">
+          <button id="langToggle" class="lang-btn" type="button" aria-label="切换语言 / Switch language">
+            中文 / EN
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="container">
+      <section class="hero" aria-label="Hero">
+        <div class="hero-card">
+          <span class="kicker" data-i18n="kicker">模型设计 · 大模型理论创新</span>
+          <h1 data-i18n="headline">面向下一代智能系统的基础研究与工程化落地</h1>
+          <p class="lead" data-i18n="lead">
+            深圳回响矩阵人工智能有限公司专注于模型设计与大模型理论创新，致力于以可验证的研究路径与可复用的工程方法，推动智能能力持续演进。
+          </p>
+          <div class="pill-row" aria-label="Highlights">
+            <span class="pill" data-i18n="pill_1">研究驱动</span>
+            <span class="pill" data-i18n="pill_2">可扩展架构</span>
+            <span class="pill" data-i18n="pill_3">系统化评测</span>
+            <span class="pill" data-i18n="pill_4">工程可复用</span>
+          </div>
+        </div>
+
+        <aside class="side" aria-label="Summary">
+          <div class="side-card">
+            <h2 data-i18n="side_1_title">主营方向</h2>
+            <p data-i18n="side_1_body">模型结构与训练范式设计，大模型理论与机制研究，通用能力提升方法。</p>
+          </div>
+          <div class="side-card">
+            <h2 data-i18n="side_2_title">合作方式</h2>
+            <p data-i18n="side_2_body">联合研发、落地支持与版权代理。</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="grid" aria-label="Capabilities">
+        <div class="feature">
+          <h3 data-i18n="f1_title">模型设计</h3>
+          <p data-i18n="f1_body">围绕效率、可扩展性与稳健性进行结构与模块化设计，为不同场景提供可迁移的模型方案。</p>
+        </div>
+        <div class="feature">
+          <h3 data-i18n="f2_title">大模型理论创新</h3>
+          <p data-i18n="f2_body">聚焦训练动力学、表示学习与泛化机理等方向，形成可解释、可验证的理论与方法。</p>
+        </div>
+        <div class="feature">
+          <h3 data-i18n="f3_title">评测与方法论</h3>
+          <p data-i18n="f3_body">构建系统化评测与消融框架，以数据与实验复现实证推动迭代，提升研究到产品的转化效率。</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <div>
+          <span id="copyright"></span>
+          <span aria-hidden="true"> · </span>
+          <span data-i18n="footer_rights">All rights reserved.</span>
+        </div>
+        <div class="icp">
+          <span data-i18n="icp_label">备案号：</span>
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="MIIT ICP Filing">
+            <span id="icpNo" data-i18n="icp_placeholder">（预留）</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const STRINGS = {
+        zh: {
+          doc_title: "MatrixEcho | 深圳回响矩阵人工智能有限公司",
+          doc_desc: "深圳回响矩阵人工智能有限公司专注模型设计与大模型理论创新。",
+
+          company_legal: "深圳回响矩阵人工智能有限公司",
+          kicker: "模型设计 · 大模型理论创新",
+          headline: "面向下一代智能系统的基础研究与工程化落地",
+          lead: "深圳回响矩阵人工智能有限公司专注于模型设计与大模型理论创新，致力于以可验证的研究路径与可复用的工程方法，推动智能能力持续演进。",
+
+          pill_1: "研究驱动",
+          pill_2: "可扩展架构",
+          pill_3: "系统化评测",
+          pill_4: "工程可复用",
+
+          side_1_title: "主营方向",
+          side_1_body: "模型结构与训练范式设计，大模型理论与机制研究，通用能力提升方法。",
+          side_2_title: "合作方式",
+          side_2_body: "联合研发、落地支持与版权代理。",
+
+          f1_title: "模型设计",
+          f1_body: "围绕效率、可扩展性与稳健性进行结构与模块化设计，为不同场景提供可迁移的模型方案。",
+          f2_title: "大模型理论创新",
+          f2_body: "聚焦训练动力学、表示学习与泛化机理等方向，形成可解释、可验证的理论与方法。",
+          f3_title: "评测与方法论",
+          f3_body: "构建系统化评测与消融框架，以数据与实验复现实证推动迭代，提升研究到产品的转化效率。",
+
+          footer_rights: "保留所有权利。",
+          icp_label: "备案号：",
+          icp_placeholder: "（预留）",
+
+          toggle_label: "中文 / EN",
+          toggle_aria: "切换语言 / Switch language"
+        },
+        en: {
+          doc_title: "MatrixEcho | Shenzhen MatrixEcho AI Co., Ltd.",
+          doc_desc: "Shenzhen MatrixEcho AI Co., Ltd. focuses on model design and theoretical innovation in large language models.",
+
+          company_legal: "Shenzhen MatrixEcho AI Co., Ltd.",
+          kicker: "Model Design · LLM Theory Innovation",
+          headline: "Foundational research and engineering for next‑gen intelligent systems",
+          lead: "Shenzhen MatrixEcho AI Co., Ltd. focuses on model design and theoretical innovation in large language models, advancing intelligent capabilities through verifiable research and reusable engineering practices.",
+
+          pill_1: "Research‑driven",
+          pill_2: "Scalable architectures",
+          pill_3: "Systematic evaluation",
+          pill_4: "Reusable engineering",
+
+          side_1_title: "Core Focus",
+          side_1_body: "Model architecture and training paradigm design; theory and mechanisms of large models; general capability improvement methods.",
+          side_2_title: "Collaboration",
+          side_2_body: "Joint R&D, deployment support, and copyright agency.",
+
+          f1_title: "Model Design",
+          f1_body: "Architecture and modular design centered on efficiency, scalability, and robustness, delivering transferable solutions across scenarios.",
+          f2_title: "LLM Theory Innovation",
+          f2_body: "Research on training dynamics, representation learning, and generalization mechanisms to build explainable, testable theories and methods.",
+          f3_title: "Evaluation Methodology",
+          f3_body: "A systematic evaluation and ablation framework that improves iteration speed and bridges research and productization with reproducible evidence.",
+
+          footer_rights: "All rights reserved.",
+          icp_label: "ICP Filing:",
+          icp_placeholder: "(Reserved)",
+
+          toggle_label: "中文 / EN",
+          toggle_aria: "Switch language / 切换语言"
+        }
+      };
+
+      const STORAGE_KEY = "matrixecho_lang";
+
+      function normalizeLang(lang) {
+        if (!lang) return null;
+        const lower = String(lang).toLowerCase();
+        if (lower.startsWith("zh")) return "zh";
+        return "en";
+      }
+
+      function getInitialLang() {
+        const saved = normalizeLang(localStorage.getItem(STORAGE_KEY));
+        if (saved) return saved;
+        return normalizeLang(navigator.language || navigator.userLanguage) || "en";
+      }
+
+      function setMetaDescription(content) {
+        const el = document.querySelector('meta[name="description"]');
+        if (el) el.setAttribute("content", content);
+      }
+
+      function applyLang(lang) {
+        const dict = STRINGS[lang] || STRINGS.en;
+
+        document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
+        document.title = dict.doc_title;
+        setMetaDescription(dict.doc_desc);
+
+        document.querySelectorAll("[data-i18n]").forEach((node) => {
+          const key = node.getAttribute("data-i18n");
+          const value = dict[key];
+          if (typeof value === "string") node.textContent = value;
+        });
+
+        const toggle = document.getElementById("langToggle");
+        if (toggle) {
+          toggle.textContent = dict.toggle_label;
+          toggle.setAttribute("aria-label", dict.toggle_aria);
+        }
+
+        try {
+          localStorage.setItem(STORAGE_KEY, lang);
+        } catch (_) {
+          // ignore
+        }
+      }
+
+      function setupLangToggle() {
+        const toggle = document.getElementById("langToggle");
+        if (!toggle) return;
+
+        toggle.addEventListener("click", () => {
+          const current = normalizeLang(localStorage.getItem(STORAGE_KEY)) || getInitialLang();
+          const next = current === "zh" ? "en" : "zh";
+          applyLang(next);
+        });
+      }
+
+      function setCopyright() {
+        const el = document.getElementById("copyright");
+        if (!el) return;
+        const year = new Date().getFullYear();
+        el.textContent = `© ${year} MatrixEcho`;
+      }
+
+      setCopyright();
+      setupLangToggle();
+      applyLang(getInitialLang());
+    })();
+  </script>
+</body>
+</html>
