@@ -91,13 +91,35 @@
       min-width: 0;
     }
 
-    .brand-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.95) 0%, rgba(2, 132, 199, 0.95) 100%);
-      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08) inset;
+    .brand-logo-wrap {
+      width: 36px;
+      height: 36px;
       flex: 0 0 auto;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: transparent;
+      border: none;
+    }
+
+    .brand-mark {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      display: none;
+      background: rgba(15, 23, 42, 0.06);
+      box-shadow: none;
+      position: absolute;
+      inset: 0;
+    }
+
+    .brand-logo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: transparent;
     }
 
     .brand-text {
@@ -299,7 +321,12 @@
     <div class="container">
       <div class="nav" role="navigation" aria-label="Primary">
         <a class="brand" href="#top" aria-label="MatrixEcho">
-          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-logo-wrap" aria-hidden="true">
+            <span class="brand-mark"></span>
+            <!-- 你可以在后续替换该文件：/logo.svg（或改成 logo.png） -->
+            <img class="brand-logo" src="/128.png" alt="" decoding="async" loading="eager"
+               onerror="this.style.display='none'; this.previousElementSibling.style.display='block'" />
+          </span>
           <span class="brand-text">
             <strong>MatrixEcho</strong>
             <span data-i18n="company_legal">深圳回响矩阵人工智能有限公司</span>
